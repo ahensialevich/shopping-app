@@ -1,5 +1,5 @@
 import { Recipe } from '../recipe.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-recipe-list',
@@ -15,9 +15,13 @@ export class RecipeListComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     new Recipe('Yet Another Test Recipe', 'Yet another simply test', 'http://68.media.tumblr.com/8edc19a8a8088529b73c93940c9569e0/tumblr_n9tjz0zMIi1qb90noo1_500.jpg')
   ];
+  @Output() recipeWasSelected = new EventEmitter<Recipe>();
   constructor() { }
 
   ngOnInit() {
   }
 
+  onRecipeSelected(recipe: Recipe) {
+    this.recipeWasSelected.emit(recipe);
+  }
 }
