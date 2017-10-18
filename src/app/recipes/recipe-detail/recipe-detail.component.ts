@@ -1,5 +1,5 @@
 import {Recipe} from '../recipe.model';
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {RecipeService} from '../recipe.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class RecipeDetailComponent {
   constructor(private recipeService: RecipeService) {
   }
 
-  sendIngredients(recipe: Recipe) {
-    this.recipeService.sendThemToTheSlaughterHouse(recipe);
+  onAddToShoppingList() {
+    this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
   }
 }
