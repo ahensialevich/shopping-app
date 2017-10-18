@@ -1,9 +1,6 @@
 import {Ingredient} from '../shared/ingredients.model';
-import {EventEmitter, Injectable, OnInit} from '@angular/core';
-import {RecipeService} from '../recipes/recipe.service';
-import {Recipe} from '../recipes/recipe.model';
+import {EventEmitter, OnInit} from '@angular/core';
 
-@Injectable()
 export class ShoppingListService implements OnInit {
   ingredientsChanged = new EventEmitter<Ingredient[]>();
   private ingredients: Ingredient[] = [
@@ -11,17 +8,10 @@ export class ShoppingListService implements OnInit {
     new Ingredient('Tomatoes', 10),
   ];
 
-  constructor(private recipeService: RecipeService) {
+  constructor() {
   }
 
-  ngOnInit(): void {
-    this.recipeService.sendIngredientsToShoppingList.subscribe(
-      (recipe: Recipe) => {
-        for (const ingredient of recipe.ingredients) {
-          this.addIngredient(ingredient);
-        }
-      }
-    );
+  ngOnInit() {
   }
 
   getIngredients() {
@@ -30,6 +20,11 @@ export class ShoppingListService implements OnInit {
 
   addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
+    this.ingredientsChanged.emit(this.ingredients.slice());
+  }
+
+  addIngredients(ingredients: Ingredient[]) {
+    this.ingredients.push(...ingredients);
     this.ingredientsChanged.emit(this.ingredients.slice());
   }
 }
