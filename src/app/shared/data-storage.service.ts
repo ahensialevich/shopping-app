@@ -20,7 +20,7 @@ export class DataStorageService {
           const recipes = response;
           for (const recipe of recipes) {
             if (!recipe['ingredients']) {
-              recipe['inredients'] = [];
+              recipe['ingredients'] = [];
             }
           }
           return response;
