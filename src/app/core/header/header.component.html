@@ -13,8 +13,8 @@
           <li><a routerLink="/signup">Register</a></li>
           <li><a routerLink="/signin">Login</a></li>
         </ng-template>
-        <li><a style="cursor: pointer;" (click)="onLogout()" *ngIf="isAuthenticatedMethod()">Logout</a></li>
-        <li class="dropdown" appDropdown *ngIf="isAuthenticatedMethod()">
+        <li><a style="cursor: pointer;" (click)="onLogout()" *ngIf="(authState | async).isAuthenticated">Logout</a></li>
+        <li class="dropdown" appDropdown *ngIf="(authState | async).isAuthenticated">
           <a class="dropdown-toggle" role="button">Manage
             <span class="caret"></span>
           </a>
