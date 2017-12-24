@@ -20,7 +20,7 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'my-universal-app'}),
     HttpClientModule,
     AppRoutingModule,
     ShoppingListModule,
